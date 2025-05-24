@@ -1,76 +1,55 @@
 #include <iostream>
 #include <vector>
-#include <string>
-#include <algorithm>
-#include <math.h>
-#include <stack>
 #include <queue>
+#include <algorithm>
+#include <string>
 using namespace std;
 
-vector<bool> ans(1000001, true);
-
-int main() 
+int main()
 {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-
 	int T;
 	cin >> T;
-
 	for (int tc = 1; tc <= T; tc++)
 	{
-		queue<pair<int, int>> q;
-		priority_queue<int> maxq; 
-
-		int N, M;
-		cin >> N >> M;
+		queue<pair<int,bool>> q;
+		priority_queue<int> pq;
+		int N, find;
+		cin >> N >> find;
 
 		for (int i = 0; i < N; i++)
 		{
-			int temp;
-			cin >> temp;
-			q.push({ temp, i });
-			maxq.push(temp);
+			int a; cin >> a;
+			pq.push(a);
+			if (i == find)
+			{
+				q.push({ a, true });
+			}
+			else q.push({ a, false });
 		}
-
-		bool run = true;
-		int cnt = 0;
-
-		while (run)
+		int outcnt = 0;
+		while (!q.empty())
 		{
-			int max = maxq.top();
-			int size = q.size();
-			bool tfpop = false;
-			for (int i = 0; i < size; i++)
+			int doc = q.front().first;
+			bool findtf = q.front().second;
+			q.pop();
+
+			int prior = pq.top();
+
+			if (doc == prior)
 			{
-				if (q.front().first != max)
+				pq.pop();
+				outcnt++;
+				if (findtf)
 				{
-					q.push(q.front());
-					q.pop();
-				}
-				else if (q.front().second == M && q.front().first == max)
-				{
-					run = false;
-					cnt++;
-					cout << cnt << "\n";
-					break;
-				}
-				else if (q.front().first == max)
-				{
-					tfpop = true;
-					cnt++;
 					break;
 				}
 			}
-
-			if (tfpop)
+			else
 			{
-				q.pop();
-				maxq.pop();
+				q.push({ doc, findtf });
 			}
 		}
+		cout << outcnt << "\n";
 	}
 	return 0;
-}
+}  
