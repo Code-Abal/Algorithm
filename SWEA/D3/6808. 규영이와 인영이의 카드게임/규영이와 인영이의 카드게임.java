@@ -14,7 +14,6 @@ public class Solution {
 		int tc = Integer.parseInt(br.readLine());
 		
 		for (int T = 1; T <= tc; T++) {
-			//테스트케이스 영향으로 초기화
 			win = 0; lose = 0;
 			int kyu[] = new int[9];
 			int in[] = new int[9];
@@ -36,7 +35,6 @@ public class Solution {
 					visited[i] = true;
 				}
 			}
-			//재활용
 			visited = new boolean[9];
 			int permu[] = new int[9];
 			recursion(in, kyu, visited, permu, 0);
@@ -56,7 +54,6 @@ public class Solution {
 		
 		for(int i = 0; i < 9; i++)
 		{
-			//int copy[] = permu;
 			if(!visited[i])
 			{
 				permu[idx] = in[i];
