@@ -1,46 +1,52 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-using namespace std;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-int main()
-{
-	int T;
-	cin >> T;
-	for (int tc = 1; tc <= T; tc++)
-	{
-		int N, M;
-		cin >> N >> M;
+public class Solution {
 
-		vector<vector<int>> arr(N, vector<int>(N, 0));
-
-		for (int i = 0; i < N; i++)
+	public static void main(String[] args) throws Exception, Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		int T = Integer.parseInt(br.readLine());
+		
+		for(int tc = 1; tc <= T; ++tc)
 		{
-			for (int j = 0; j < N; j++)
+			st = new StringTokenizer(br.readLine());
+			int N = Integer.parseInt(st.nextToken());
+			int M = Integer.parseInt(st.nextToken());
+			
+			int arr[][] = new int[N][N];
+			
+			for(int i = 0; i < N; i++)
 			{
-				cin >> arr[i][j];
-			}
-		}
-
-		int fly = 0;
-
-		for (int i = 0; i <= N - M; i++)
-		{
-			for (int j = 0; j <= N - M; j++)
-			{
-				int catchfly = 0;
-				for (int fly_i = 0; fly_i < M; fly_i++)
+				st = new StringTokenizer(br.readLine());
+				for(int j = 0; j < N; j++)
 				{
-					for (int fly_j = 0; fly_j < M; fly_j++)
-					{
-						catchfly += arr[i + fly_i][j + fly_j];
-					}
+					arr[i][j] = Integer.parseInt(st.nextToken());
 				}
-				fly = max(fly, catchfly);
 			}
+			
+			int maxFly = 0;
+			for(int i = 0; i <= N - M; i++)
+			{
+				for(int j = 0; j <= N - M; j++)
+				{
+					int Fly = 0;
+					for(int k = i; k < i + M; k++)
+					{
+						for(int p = j; p < j + M; p++)
+						{
+							Fly += arr[k][p];
+						}
+					}
+					maxFly = Math.max(maxFly, Fly);
+				}
+			}
+			sb.append("#").append(tc).append(" ").append(maxFly).append("\n");
 		}
-		cout << "#" << tc << " " << fly << "\n";
+		System.out.println(sb);
 	}
-	
-	return 0;
-}  
+
+}
