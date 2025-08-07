@@ -1,72 +1,60 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-public class Solution 
-{
-	static class Food
+public class Solution {
+	static int maxTaste = 0;
+	static int T[];
+	static int K[];
+	static int N,L;
+	static void dfs(int depth, int sum, int cal) 
 	{
-		int taste;
-		int calory;
-		Food(int t, int c)
+		if (depth == N) 
 		{
-			this.taste = t;
-			this.calory = c;
+			if (cal <= L && sum > maxTaste) 
+			{
+				maxTaste = sum;
+			}
+			return;
 		}
+		// 재료를 선택하지 않는 경우
+		dfs(depth + 1, sum, cal);
+
+		// 현재 재료를 선택하는 경우
+		dfs(depth + 1, sum + T[depth], cal + K[depth]);
 	}
-	
-	static int JMT = 0;
-	static int N, L;
-	static boolean visited[];
-	
+
 	public static void main(String[] args) throws Exception 
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
 		StringBuilder sb = new StringBuilder();
-		int T = Integer.parseInt(br.readLine());
-		
-		for(int tc = 1; tc <= T; ++tc)
+		StringTokenizer st;
+
+		int Tc = Integer.parseInt(br.readLine());
+
+		for (int tc = 1; tc <= Tc; tc++) 
 		{
-			//이전 테스트케이스에 영향을 줄 수 있으므로, 초기화.
-			JMT = 0;
-			
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
 			L = Integer.parseInt(st.nextToken());
 
-			Food foods[] = new Food[N];
-			visited = new boolean[N];
-			for(int i = 0; i < N; i++)
+			T = new int[N];
+			K = new int[N];
+
+			for (int i = 0; i < N; i++) 
 			{
 				st = new StringTokenizer(br.readLine());
-				int taste = Integer.parseInt(st.nextToken());
-				int calory = Integer.parseInt(st.nextToken());
-				foods[i] = new Food(taste, calory);
+				T[i] = Integer.parseInt(st.nextToken());
+				K[i] = Integer.parseInt(st.nextToken());
 			}
-			
-			BackTrack(foods, visited, L, 0, 0, 0);
-			
-			sb.append("#").append(tc).append(" ").append(JMT).append("\n");
+
+			maxTaste = 0;
+			dfs(0, 0, 0);
+
+			sb.append("#").append(tc).append(" ").append(maxTaste).append("\n");		
 		}
 		System.out.println(sb);
 	}
-	static void BackTrack(Food foods[], boolean visited[], int L, int calory, int taste, int idx)
-	{
-		if(calory > L)return;
 
-		JMT = Math.max(JMT, taste);
-		
-		for(int i = idx; i < foods.length; i++)
-		{
-			if(!visited[i])
-			{
-				visited[i] = true;
-				BackTrack(foods, visited, L, calory + foods[i].calory, taste + foods[i].taste, i + 1);
-				visited[i] = false;
-			}
-		}
-	}
 }
