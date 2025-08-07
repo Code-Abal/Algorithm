@@ -18,6 +18,8 @@ public class Solution
 	}
 	
 	static int JMT = 0;
+	static int N, L;
+	static boolean visited[];
 	
 	public static void main(String[] args) throws Exception 
 	{
@@ -32,11 +34,11 @@ public class Solution
 			JMT = 0;
 			
 			st = new StringTokenizer(br.readLine());
-			int N = Integer.parseInt(st.nextToken());
-			int L = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
+			L = Integer.parseInt(st.nextToken());
 
 			Food foods[] = new Food[N];
-			boolean visited[] = new boolean[N];
+			visited = new boolean[N];
 			for(int i = 0; i < N; i++)
 			{
 				st = new StringTokenizer(br.readLine());
