@@ -106,7 +106,6 @@ int direction(int angle, int dir)
 
 int pinball(vector<vector<int>>& arr, int start_i, int start_j, int d, int N)
 {
-	
 	int x = start_i;
 	int y = start_j;
 
@@ -118,7 +117,7 @@ int pinball(vector<vector<int>>& arr, int start_i, int start_j, int d, int N)
 
 		int nx = x + dx[dir];
 		int ny = y + dy[dir];
-		//cout << nx << " " << ny << "\n";
+
 		if (nx >= 0 && ny >= 0 && nx < N && ny < N)
 		{
 			if (arr[nx][ny] == -1) return cnt;
@@ -137,7 +136,6 @@ int pinball(vector<vector<int>>& arr, int start_i, int start_j, int d, int N)
 				x = pos.first, y = pos.second;
 			}
 		}
-
 	}
 	return 0;
 }
@@ -159,17 +157,9 @@ int main()
 				cin >> arr[i][j];
 				if (arr[i][j] == 0)
 				{
-					for (int dir = 0; dir < 4; dir++)
-					{
-						// x, y, cnt, dir
-						q.push({ i, j, dir });
-
-					}
+					for (int dir = 0; dir < 4; dir++) q.push({ i, j, dir });
 				}
-				else if (6 <= arr[i][j] && arr[i][j] <= 10)
-				{
-					setwhole(arr[i][j], i, j);
-				}
+				else if (6 <= arr[i][j] && arr[i][j] <= 10)setwhole(arr[i][j], i, j);
 			}
 		}
 
