@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -10,8 +11,8 @@ public class Main {
         long minNode, maxNode;
 
         Node() {
-            this.minNode = MAX_INT;
-            this.maxNode = MIN_INT;
+            this.minNode = Long.MAX_VALUE; // 빈 노드는 최댓값으로 초기화
+            this.maxNode = Long.MIN_VALUE; // 빈 노드는 최솟값으로 초기화
         }
 
         Node(long val) {
@@ -62,31 +63,36 @@ public class Main {
         return new Node(minVal, maxVal);
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+        st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
+        // 각 줄마다 하나씩 수를 입력받음
         for (int i = 0; i < N; i++) {
-            arr[i] = sc.nextLong();
+            arr[i] = Long.parseLong(br.readLine());
         }
 
+        // tree 배열 초기화
         for (int i = 0; i < tree.length; i++) {
-            tree[i] = new Node(); // null 방지용 초기화
+            tree[i] = new Node();
         }
 
         init(1, 0, N - 1);
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < M; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
             Node ans = findMinMax(1, 0, N - 1, a - 1, b - 1);
             sb.append(ans.minNode).append(" ").append(ans.maxNode).append("\n");
         }
 
         System.out.print(sb);
-        sc.close();
     }
 }
