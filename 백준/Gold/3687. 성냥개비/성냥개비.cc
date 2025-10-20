@@ -1,7 +1,7 @@
 #include <cstdio>
 #define MAX_N 100
 
-const char* maxDP[MAX_N + 1] = {
+const char* maxDP[MAX_N] = {
 				"1",
 				"7",
 				"11",
@@ -102,7 +102,7 @@ const char* maxDP[MAX_N + 1] = {
 				"7111111111111111111111111111111111111111111111111",
 				"11111111111111111111111111111111111111111111111111"
 };
-const char* minDP[MAX_N + 1] = {
+const char* minDP[MAX_N] = {
 				"1",
 				"7",
 				"4",
@@ -203,13 +203,13 @@ const char* minDP[MAX_N + 1] = {
 				"108888888888888",
 				"188888888888888"
 };
-
+int T, n;
 int main()
 {
-	int T; scanf("%d", &T);
+	scanf("%d", &T);
 	for (int tc = 1; tc <= T; tc++)
 	{
-		int n; scanf("%d", &n);
+		scanf("%d", &n);
 		printf("%s %s\n", minDP[n-2], maxDP[n-2]);
 	}
 	return 0;
