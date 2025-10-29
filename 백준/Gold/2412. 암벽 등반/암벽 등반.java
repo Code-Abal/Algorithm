@@ -7,13 +7,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int N, T, cnt = 0;
+	static int N, T, cnt = -1;
 	static List<Integer>[] xList;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			
 		StringTokenizer st = new StringTokenizer(br.readLine());
+        
 		N = Integer.parseInt(st.nextToken()); // 홈의 수
 		T = Integer.parseInt(st.nextToken()); // 암벽의 정상
 		
@@ -31,9 +31,7 @@ public class Main {
 			
 			xList[y].add(x);
 		}
-		
 		bfs(0, 0);
-		if(cnt == 0) cnt = -1;
 		System.out.println(cnt);
 	}
 	
