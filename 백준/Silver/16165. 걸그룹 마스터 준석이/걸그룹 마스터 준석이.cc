@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	int N, M; cin >> N >> M;
-	map<string,set<string>> idol;
+	map<string, set<string>> idol;
 	for (int i = 0; i < N; i++)
 	{
 		string group_name; cin >> group_name;
@@ -24,31 +24,8 @@ int main()
 	{
 		string name; cin >> name;
 		int cmd; cin >> cmd;
-		if (cmd == 1)
-		{
-			for (auto m : idol)
-			{
-				if (m.second.find(name) != m.second.end())
-				{
-					cout << m.first << "\n";
-					break;
-				}
-			}
-		}
-		else
-		{
-			for (auto m : idol)
-			{
-				if (m.first == name)
-				{
-					for (auto s : m.second)
-					{
-						cout << s << "\n";
-					}
-					break;
-				}
-			}
-		}
+		if (cmd == 1){for (auto m : idol){if (m.second.find(name) != m.second.end()){cout << m.first << "\n";	break;}}}
+		else{for (auto m : idol){if (m.first == name){for (auto s : m.second){cout << s << "\n";}break;}}}
 	}
 
 	return 0;
