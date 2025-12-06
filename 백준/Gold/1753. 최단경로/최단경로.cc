@@ -56,6 +56,8 @@ void dijkstra(int start)
 
 int main()
 {
+	iostream::sync_with_stdio(0);
+	cin.tie(0);
 	init();
 	dijkstra(start);
 	return 0;
