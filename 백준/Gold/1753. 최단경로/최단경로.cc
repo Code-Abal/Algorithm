@@ -39,7 +39,7 @@ void dijkstra(int start)
 	{
 		auto cur = pq.top(); pq.pop();
 		if (dist[cur.node] != cur.cost) continue;
-		for (auto next : graph[cur.node]) 
+		for (const auto& next : graph[cur.node]) 
 		{
 			if (dist[next.node] <= dist[cur.node] + next.cost) continue;
 			dist[next.node] = dist[cur.node] + next.cost;
@@ -56,7 +56,7 @@ void dijkstra(int start)
 
 int main()
 {
-	iostream::sync_with_stdio(0);
+	ios::sync_with_stdio(0);
 	cin.tie(0);
 	init();
 	dijkstra(start);
