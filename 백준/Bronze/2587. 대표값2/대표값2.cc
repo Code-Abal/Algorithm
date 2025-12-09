@@ -17,17 +17,5 @@ int main() {
     sort(a.begin(), a.end());
     cout << (sum / 5) << "\n";
     cout << a[2] << "\n";
-
-    int freq[101] = {0}; 
-    for (int v : a) ++freq[v];
-
-    int mode = 0;
-    int maxCnt = 0;
-    for (int val = 0; val <= 100; ++val) {
-        if (freq[val] > maxCnt) {
-            maxCnt = freq[val];
-            mode = val;
-        }
-    }
     return 0;
 }
