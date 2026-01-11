@@ -50,6 +50,13 @@ void update(int node, int start, int end, int idx, ll val)
 	seg_tree[node] = seg_tree[node * 2] + seg_tree[node * 2 + 1];
 }
 
+void swap(int& range_start, int& range_end)
+{
+	int temp = range_start;
+	range_start = range_end;
+	range_end = temp;
+}
+
 void controller()
 {
 	for (int q = 0; q < Q; q++)
@@ -59,8 +66,7 @@ void controller()
 		cin >> range_start >> range_end >> idx >> val;
 
 		if (range_start > range_end) swap(range_start, range_end);
-		
-        cout << section_sum(1, 0, N - 1, range_start - 1, range_end - 1) << "\n";
+		cout << section_sum(1, 0, N - 1, range_start - 1, range_end - 1) << "\n";
 		update(1, 0, N - 1, idx - 1, val);
 	}
 }
