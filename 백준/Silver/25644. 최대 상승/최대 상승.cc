@@ -3,16 +3,16 @@
 using namespace std;
 
 int price[200001];
-int N, profit = 0;
-
+int N, stock;
 int main()
 {
+	ios_base::sync_with_stdio(0); cin.tie(0);
 	cin >> N;
 	int min_price = 1e9;
 	int max_profit = 0;
 	for (int i = 0; i < N; i++)
 	{
-		int stock; cin >> stock;
+		cin >> stock;
 		max_profit = max(max_profit, stock - min_price);
 		min_price = min(min_price, stock);
 	}
