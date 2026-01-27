@@ -2,11 +2,10 @@
 #include <algorithm>
 using namespace std;
 
-int price[200001];
-int N, stock;
 int main()
 {
 	ios_base::sync_with_stdio(0); cin.tie(0);
+	int N, stock;
 	cin >> N;
 	int min_price = 1e9;
 	int max_profit = 0;
